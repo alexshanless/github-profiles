@@ -8,8 +8,11 @@ async function getUser(username) {
   try {
     const { data } = await axios(APIURL + username);
     creatUserCard(data);
+    getRepos(username);
   } catch (err) {
-    createErrorCard()
+    if (err.response.status == 404) {
+      createErrorCard("Pofile not found");
+    }
   }
 }
 
@@ -35,6 +38,39 @@ function creatUserCard(user) {
  </div>`;
 
   main.innerHTML = cardHTML;
+}
+
+function createErrorCard(msg) {
+  const cardHTML = `
+  <div class='card'>
+  <h1>${msg}</h1>
+  </div>
+  `;
+
+  main.innerHTML = cardHTML;
+}
+
+function addReposToCard(repos) {
+  const reposEl = document.getElementById("repos");
+
+  repos.slice(0, 10).forEach((repo) => {
+    const repoEl = document.createElement("a");
+    repoEl.classList.add("repo");
+    repoEl.href = repo.html_url;
+    repoEl.target = "_blank";
+    repoEl.innerText = repo.name;
+
+    reposEl.appendChild(repoEl);
+  });
+}
+
+async function getRepos(username) {
+  try {
+    const { data } = await axios(APIURL + username + "/repos?sort=created");
+    addReposToCard(data);
+  } catch (err) {
+    createErrorCard("Problem fetching repos");
+  }
 }
 
 form.addEventListener("submit", (e) => {
