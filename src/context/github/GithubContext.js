@@ -6,12 +6,13 @@ const GithubContext = createContext();
 export const GithubProvider = ({ children }) => {
   const intialState = {
     users: [],
-    loading: true,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(githubReducer, intialState);
 
   const getUsers = async () => {
+    setLoading();
     const response = await fetch(`https://api.github.com/users`);
 
     const data = await response.json();
@@ -20,6 +21,11 @@ export const GithubProvider = ({ children }) => {
       payload: data,
     });
   };
+
+  const setLoading = () =>
+    dispatch({
+      type: 'SET_LOADING',
+    });
 
   return (
     <GithubContext.Provider

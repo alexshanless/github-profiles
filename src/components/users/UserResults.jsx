@@ -1,13 +1,9 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import UserItem from './UserItem';
 import GithubContext from '../../context/github/GithubContext';
 
 function UserResults() {
-  const { users, loading, getUsers } = useContext(GithubContext);
-
-  useEffect(() => {
-    getUsers();
-  }, []);
+  const { users, loading } = useContext(GithubContext);
 
   if (!loading) {
     return (
