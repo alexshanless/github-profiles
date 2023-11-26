@@ -2,14 +2,17 @@ import { useEffect, useContext } from 'react';
 import GithubContext from '../context/github/GithubContext';
 import { Link, useParams } from 'react-router-dom';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
+import RepoList from '../components/users/RepoList';
 
 function User() {
-  const { getUser, user, loading } = useContext(GithubContext);
+  const { getUser, user, loading, getUserRepos, repos } =
+    useContext(GithubContext);
 
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
   }, []);
 
   const {
@@ -138,6 +141,7 @@ function User() {
             </div>
           </div>
         </div>
+        <RepoList repos={repos} />
       </div>
     </>
   );
