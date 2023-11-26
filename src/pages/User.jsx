@@ -74,12 +74,73 @@ function User() {
                 </a>
               </div>
             </div>
+            <div className='width-full rounded-lg shadow-md bg-base-100 stats'>
+              {location && (
+                <div className='stat'>
+                  <div className='stat-title text-md'>Location</div>
+                  <div className='text-lg stat-value'>{location}</div>
+                </div>
+              )}
+              {blog && (
+                <div className='stat'>
+                  <div className='stat-title text-md'>Website</div>
+                  <div className='text-lg stat-value'>
+                    <a href='{blog}' target='_blank'>
+                      {blog}
+                    </a>
+                  </div>
+                </div>
+              )}
+              {twitter_username && (
+                <div className='stat'>
+                  <div className='stat-title text-md'>Twitter</div>
+                  <div className='text-lg stat-value'>{twitter_username}</div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className='w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats'>
+            <div className='stat'>
+              <div className='stat-figure text-secondary'>
+                <FaUsers className='text-3xl md:text-text5xl' />
+              </div>
+              <div className='stat-title pr-5'>Followers</div>
+              <div className='stat-value pr-5 text-3xl md:text-3xl'>
+                {followers}
+              </div>
+            </div>
+            <div className='stat'>
+              <div className='stat-figure text-secondary'>
+                <FaUserFriends className='text-3xl md:text-text5xl' />
+              </div>
+              <div className='stat-title pr-5'>Following</div>
+              <div className='stat-value pr-5 text-3xl md:text-3xl'>
+                {following}
+              </div>
+            </div>
+            <div className='stat'>
+              <div className='stat-figure text-secondary'>
+                <FaCodepen className='text-3xl md:text-text5xl' />
+              </div>
+              <div className='stat-title pr-5'>Public Repos</div>
+              <div className='stat-value pr-5 text-3xl md:text-3xl'>
+                {public_repos}
+              </div>
+            </div>
+            <div className='stat'>
+              <div className='stat-figure text-secondary'>
+                <FaStore className='text-3xl md:text-text5xl' />
+              </div>
+              <div className='stat-title pr-5'>Publis Gists</div>
+              <div className='stat-value pr-5 text-3xl md:text-3xl'>
+                {public_gists}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
-  return <div>{user.login}</div>;
 }
 
 export default User;
