@@ -8,7 +8,7 @@ function Alert() {
     alert !== null && (
       <p className='flex items-start mb-4 space-x-2'>
         {alert.type === 'error' && 'ERROR: '}
-        <p className='flex-1 text-base font-semibold leading-7 text-white'>
+        <p className='flex-1 text-base font-semibold leading-7 text-black'>
           <strong>{alert.msg}</strong>
         </p>
       </p>
