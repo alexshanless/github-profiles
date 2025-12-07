@@ -13,6 +13,5 @@ createRoot(document.getElementById('root')!).render(
 			<App />
 			<ReactQueryDevtools initialIsOpen={false} position='bottom' />
 		</StrictMode>
-		,
 	</QueryClientProvider>
 );
