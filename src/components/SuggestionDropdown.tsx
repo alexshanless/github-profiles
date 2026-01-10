@@ -3,7 +3,7 @@ import type { GithubUser } from '../types';
 type SuggestionDropdownProps = {
 	suggestions: GithubUser[];
 	show: boolean;
-	onSelect: (username: GithubUser) => void;
+	onSelect: (username: string) => void;
 };
 
 const SuggestionDropdown = ({
@@ -16,7 +16,7 @@ const SuggestionDropdown = ({
 	return (
 		<ul className='suggestions'>
 			{suggestions.slice(0, 5).map((user: GithubUser) => (
-				<li key={user.login} onClick={() => onSelect(user)}>
+				<li key={user.login} onClick={() => onSelect(user.login)}>
 					<img src={user.avatar_url} alt={user.login} className='avatar-xs' />
 					<span>{user.login}</span>
 				</li>
